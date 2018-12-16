@@ -64,9 +64,9 @@ xmrig::CpuThread::cn_hash_fun xmrig::CpuThread::fn(Algo algorithm, AlgoVariant a
     assert(variant >= VARIANT_0 && variant < VARIANT_MAX);
 
 #   ifndef XMRIG_NO_ASM
-    constexpr const size_t count = VARIANT_MAX * 10 * 3 + 3;
+    constexpr const size_t count = VARIANT_MAX * 10 * 4 + 3;
 #   else
-    constexpr const size_t count = VARIANT_MAX * 10 * 3;
+    constexpr const size_t count = VARIANT_MAX * 10 * 4;
 #   endif
 
     static const cn_hash_fun func_table[count] = {
@@ -246,6 +246,18 @@ xmrig::CpuThread::cn_hash_fun xmrig::CpuThread::fn(Algo algorithm, AlgoVariant a
         nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,
         nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,
 #       endif
+
+		cryptonight_single_hash<CRYPTONIGHT_TURTLE, false, VARIANT_2>,
+		cryptonight_double_hash<CRYPTONIGHT_TURTLE, false, VARIANT_2>,
+		cryptonight_single_hash<CRYPTONIGHT_TURTLE, true, VARIANT_2>,
+		cryptonight_double_hash<CRYPTONIGHT_TURTLE, true, VARIANT_2>,
+		cryptonight_triple_hash<CRYPTONIGHT_TURTLE, false, VARIANT_2>,
+		cryptonight_quad_hash<CRYPTONIGHT_TURTLE, false, VARIANT_2>,
+		cryptonight_penta_hash<CRYPTONIGHT_TURTLE, false, VARIANT_2>,
+		cryptonight_triple_hash<CRYPTONIGHT_TURTLE, true, VARIANT_2>,
+		cryptonight_quad_hash<CRYPTONIGHT_TURTLE, true, VARIANT_2>,
+		cryptonight_penta_hash<CRYPTONIGHT_TURTLE, true, VARIANT_2>,
+
 #       ifndef XMRIG_NO_ASM
         cryptonight_single_hash_asm<CRYPTONIGHT, VARIANT_2, ASM_INTEL>,
         cryptonight_single_hash_asm<CRYPTONIGHT, VARIANT_2, ASM_RYZEN>,
@@ -441,7 +453,7 @@ size_t xmrig::CpuThread::fnIndex(Algo algorithm, AlgoVariant av, Variant variant
 
     constexpr const size_t offset = VARIANT_MAX * 10 * 3;
 
-    if (algorithm == CRYPTONIGHT && variant == VARIANT_2) {
+    if ((algorithm == CRYPTONIGHT || algorithm == CRYPTONIGHT_TURTLE) && variant == VARIANT_2) {
         if (av == AV_SINGLE) {
             return offset + assembly - 2;
         }

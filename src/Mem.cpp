@@ -44,8 +44,12 @@ MemInfo Mem::create(cryptonight_ctx **ctx, xmrig::Algo algorithm, size_t count)
 #   ifndef XMRIG_NO_AEON
     info.size += info.size % cn_select_memory<CRYPTONIGHT>();
 #   endif
-
-    info.pages = info.size / cn_select_memory<CRYPTONIGHT>();
+	if (algorithm == CRYPTONIGHT_TURTLE) {
+		info.pages = info.size / cn_select_memory<CRYPTONIGHT_TURTLE>();
+	}
+	else {
+		info.pages = info.size / cn_select_memory<CRYPTONIGHT>();
+	}
 
     allocate(info, m_enabled);
 

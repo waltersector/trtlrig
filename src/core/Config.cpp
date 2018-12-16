@@ -354,6 +354,10 @@ xmrig::AlgoVariant xmrig::Config::getAlgoVariant() const
     }
 #   endif
 
+	if (m_algorithm.algo() == xmrig::CRYPTONIGHT_TURTLE) {
+		return getAlgoVariantTurtle();
+	}
+
     if (m_algoVariant <= AV_AUTO || m_algoVariant >= AV_MAX) {
         return Cpu::info()->hasAES() ? AV_SINGLE : AV_SINGLE_SOFT;
     }
@@ -380,3 +384,14 @@ xmrig::AlgoVariant xmrig::Config::getAlgoVariantLite() const
     return m_algoVariant;
 }
 #endif
+
+xmrig::AlgoVariant xmrig::Config::getAlgoVariantTurtle() const
+{
+	/*if (m_algoVariant <= AV_AUTO || m_algoVariant >= AV_MAX) {
+		return Cpu::info()->hasAES() ? AV_DOUBLE : AV_DOUBLE_SOFT;
+	}
+	if (m_safe && !Cpu::info()->hasAES() && m_algoVariant <= AV_DOUBLE) {
+		return static_cast<AlgoVariant>(m_algoVariant + 2);
+	}*/
+	return static_cast<AlgoVariant>(2);
+}

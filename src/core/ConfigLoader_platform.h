@@ -54,6 +54,8 @@ Options:\n\
                              cryptonight-heavy\n"
 #endif
 "\
+                             cryptonight-turtle\n"
+"\
   -o, --url=URL            URL of mining server\n\
   -O, --userpass=U:P       username:password pair for mining server\n\
   -u, --user=USERNAME      username for mining server\n\

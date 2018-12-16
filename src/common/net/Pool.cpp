@@ -106,7 +106,7 @@ bool Pool::isCompatible(const xmrig::Algorithm &algorithm) const
     }
 
 #   ifdef XMRIG_PROXY_PROJECT
-    if (m_algorithm.algo() == xmrig::CRYPTONIGHT && algorithm.algo() == xmrig::CRYPTONIGHT && m_algorithm.variant() == xmrig::VARIANT_XTL) {
+    if (((m_algorithm.algo() == xmrig::CRYPTONIGHT && algorithm.algo() == xmrig::CRYPTONIGHT) || (m_algorithm.algo() == xmrig::CRYPTONIGHT_TURTLE && algorithm.algo() == xmrig::CRYPTONIGHT_TURTLE)) && m_algorithm.variant() == xmrig::VARIANT_XTL) {
         return true;
     }
 #   endif
@@ -377,6 +377,9 @@ void Pool::adjustVariant(const xmrig::Variant variantHint)
     }
     else if (m_algorithm.algo() == CRYPTONIGHT_LITE) {
         m_algorithm.setVariant(VARIANT_1);
+	}
+	else if (m_algorithm.algo() == CRYPTONIGHT_TURTLE) {
+		m_algorithm.setVariant(VARIANT_2);
     }
 #   endif
 }
