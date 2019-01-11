@@ -287,7 +287,6 @@ void Workers::onReady(void *arg)
 
     if (!worker->selfTest()) {
         LOG_ERR("thread %zu error: \"hash self-test failed\".", handle->worker()->id());
-
         return;
     }
 

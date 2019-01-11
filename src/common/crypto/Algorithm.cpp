@@ -76,6 +76,8 @@ static AlgoData const algorithms[] = {
     { "cryptonight-heavy/xhv",  "cn-heavy/xhv",  xmrig::CRYPTONIGHT_HEAVY, xmrig::VARIANT_XHV  },
     { "cryptonight-heavy/tube", "cn-heavy/tube", xmrig::CRYPTONIGHT_HEAVY, xmrig::VARIANT_TUBE },
 #   endif
+
+	{ "cryptonight-turtle",     "cn-trtl",       xmrig::CRYPTONIGHT_TURTLE, xmrig::VARIANT_2   },
 };
 
 
@@ -95,6 +97,7 @@ static AlgoData const xmrStakAlgorithms[] = {
     { "cryptonight_masari",      nullptr, xmrig::CRYPTONIGHT,       xmrig::VARIANT_MSR  },
     { "cryptonight-bittube2",    nullptr, xmrig::CRYPTONIGHT_HEAVY, xmrig::VARIANT_TUBE }, // bittube-miner
     { "cryptonight_alloy",       nullptr, xmrig::CRYPTONIGHT,       xmrig::VARIANT_XAO  }, // xmr-stak-alloy
+	{ "cryptonight_turtle",      nullptr, xmrig::CRYPTONIGHT_TURTLE, xmrig::VARIANT_2    }, // TurtleCoin
 };
 #endif
 

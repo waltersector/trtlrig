@@ -101,7 +101,7 @@ private:
 #   ifndef XMRIG_NO_AEON
     AlgoVariant getAlgoVariantLite() const;
 #   endif
-
+	AlgoVariant getAlgoVariantTurtle() const;
 
     struct Threads
     {

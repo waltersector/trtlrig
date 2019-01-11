@@ -234,6 +234,9 @@ xmrig::Variant Job::variant() const
     case CRYPTONIGHT_HEAVY:
         return VARIANT_0;
 
+	case CRYPTONIGHT_TURTLE:
+		return VARIANT_2;
+
     default:
         break;
     }
